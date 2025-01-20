@@ -18,6 +18,7 @@ type Actions = {
   updateCode: (id: number, code: string) => void;
   updateOutput: (id: number, output: string) => void;
   setCurrent: (id: number) => void;
+  deleteTab: (id: number) => void;
 };
 
 let initialTab: Tab = {
@@ -80,6 +81,16 @@ const useStore = create<State & Actions>()(
           }
           return { current: state.current };
         }),
+
+      deleteTab: id => {
+        set(state => {
+          state.tabs = state.tabs.filter(tab => tab.id !== id);
+          if (state.current.id === id) {
+            state.current = state.tabs[0];
+          }
+          return { tabs: state.tabs, current: state.current };
+        });
+      },
     }),
     {
       name: 'tabs_x',

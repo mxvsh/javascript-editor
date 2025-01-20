@@ -26,7 +26,7 @@ const macTitleIconColors = [
 ];
 
 function Tabs() {
-  const { tabs, current, addTab, setCurrent } = useStore();
+  const { tabs, current, addTab, setCurrent, deleteTab } = useStore();
 
   return (
     <div className="flex items-center h-full pl-4" data-tauri-drag-region>
@@ -59,7 +59,16 @@ function Tabs() {
           >
             {tab.title}
           </h1>
-          <XIcon className="min-w-4 h-4 ml-1 cursor-pointer" />
+          <XIcon
+            className={`min-w-4 h-4 ml-1 ${
+              tab.id === current.id ? 'opacity-0' : 'opacity-40'
+            }`}
+            onClick={() => {
+              if (tab.id === 0) return;
+
+              deleteTab(tab.id);
+            }}
+          />
         </div>
       ))}
       <button
