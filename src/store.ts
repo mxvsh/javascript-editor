@@ -86,7 +86,9 @@ const useStore = create<State & Actions>()(
         set(state => {
           state.tabs = state.tabs.filter(tab => tab.id !== id);
           if (state.current.id === id) {
-            state.current = state.tabs[0];
+            if (state.tabs.length > 0) {
+              state.current = state.tabs[state.tabs.length - 1];
+            } else state.current = state.tabs[0];
           }
           return { tabs: state.tabs, current: state.current };
         });

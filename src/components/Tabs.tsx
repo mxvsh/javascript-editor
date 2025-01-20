@@ -33,7 +33,7 @@ function Tabs() {
       {macTitleIconColors.map((icon, index) => (
         <div
           key={index}
-          className="group w-3 h-3 flex items-center justify-center rounded-full mr-3 cursor-pointer"
+          className="group min-w-3 w-3 h-3 flex items-center justify-center rounded-full mr-3 cursor-pointer"
           style={{
             backgroundColor: icon.color,
           }}
@@ -42,45 +42,47 @@ function Tabs() {
           <div className="w-1 h-1 group-hover:bg-black rounded-full" />
         </div>
       ))}
-      {tabs.map(tab => (
-        <div
-          key={tab.id}
-          className={`flex w-[10rem] border-r border-[#3f4152] h-full items-center px-4 ${
-            tab.id === current.id ? 'bg-[#303240]' : ''
-          } ${tab.id === current.id ? 'text-white' : 'text-gray-300'}`}
+      <div className="tabs flex items-center h-full overflow-auto">
+        {tabs.map(tab => (
+          <div
+            key={tab.id}
+            className={`flex w-[10rem] min-w-[10rem] border-r border-[#3f4152] h-full items-center px-4 ${
+              tab.id !== current.id ? 'bg-[#303240]' : ''
+            } ${tab.id === current.id ? 'text-white' : 'text-gray-300'}`}
+            onClick={() => {
+              setCurrent(tab.id);
+            }}
+          >
+            <h1
+              className={`text-sm flex-1 font-medium ${
+                tab.id === current.id ? '' : 'opacity-40'
+              }`}
+            >
+              {tab.title}
+            </h1>
+            <XIcon
+              className={`min-w-4 h-4 ml-1 ${
+                tab.id === 1 ? 'opacity-0' : 'opacity-40'
+              }`}
+              onClick={() => {
+                if (tabs.length === 1) return;
+
+                deleteTab(tab.id);
+              }}
+            />
+          </div>
+        ))}
+        <button
+          className="h-full flex items-center px-2 hover:bg-[#363949]"
           onClick={() => {
-            setCurrent(tab.id);
+            addTab();
           }}
         >
-          <h1
-            className={`text-sm flex-1 font-medium ${
-              tab.id === current.id ? '' : 'opacity-40'
-            }`}
-          >
-            {tab.title}
+          <h1 className="text-sm">
+            <PlusIcon className="min-w-4 h-4 mr-1" />
           </h1>
-          <XIcon
-            className={`min-w-4 h-4 ml-1 ${
-              tab.id === current.id ? 'opacity-0' : 'opacity-40'
-            }`}
-            onClick={() => {
-              if (tab.id === 0) return;
-
-              deleteTab(tab.id);
-            }}
-          />
-        </div>
-      ))}
-      <button
-        className="h-full flex items-center px-2 hover:bg-[#363949]"
-        onClick={() => {
-          addTab();
-        }}
-      >
-        <h1 className="text-sm">
-          <PlusIcon className="min-w-4 h-4 mr-1" />
-        </h1>
-      </button>
+        </button>
+      </div>
     </div>
   );
 }
