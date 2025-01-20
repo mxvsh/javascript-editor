@@ -5,4 +5,10 @@
 :root {
   color-scheme: dark;
   background-color: #282a36;
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
