@@ -1,7 +1,7 @@
-# Tauri + React + Typescript
+# JSLive
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+Code editor for JavaScript with live output.
 
-## Recommended IDE Setup
+## Screenshot
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+<img width="1101" alt="image" src="https://github.com/user-attachments/assets/11a91f11-d309-4332-9302-88d83bea8fba" />
